@@ -11,12 +11,20 @@ import {
   Sparkles,
   Cpu,
   BadgeCheck,
-  CheckCircle2,
+  ExternalLink,
 } from "lucide-react";
-import { personalData, certificationsDetailed } from "@/data/portfolioData";
+import { personalData, certificationsData } from "@/data/portfolioData";
 
 export default function AboutBento() {
   const [copied, setCopied] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("Todas");
+
+  const categories = [
+    "Todas",
+    "Cloud & AWS",
+    "Python, Data & IA",
+    "Bases de Datos & Backend",
+  ] as const;
 
   const handleCopyEmail = async () => {
     try {
@@ -37,6 +45,16 @@ export default function AboutBento() {
       setTimeout(() => setCopied(false), 2000);
     }
   };
+
+  const getCategoryCount = (cat: string) => {
+    if (cat === "Todas") return certificationsData.length;
+    return certificationsData.filter((c) => c.category === cat).length;
+  };
+
+  const filteredCertifications =
+    selectedCategory === "Todas"
+      ? certificationsData
+      : certificationsData.filter((c) => c.category === selectedCategory);
 
   // Principles with customized rotations and positions for Card 2
   const principleTags = [
@@ -252,9 +270,9 @@ export default function AboutBento() {
             <div>
               <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                 <div className="flex items-center gap-2 text-violet-400">
-                  <Award size={20} />
+                  <Award size={22} />
                   <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    Investigación & Certificaciones
+                    Investigación & Certificaciones ({certificationsData.length})
                   </h3>
                 </div>
                 {/* Floating Tech Badges */}
@@ -277,58 +295,94 @@ export default function AboutBento() {
                 </div>
               </div>
 
-              <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-6">
-                Constante aprendizaje autodidacta y exploración profunda en Cloud Computing, Inteligencia Artificial,
-                Seguridad de Datos y modelado NoSQL / Grafos.
+              <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-4">
+                Constante aprendizaje autodidacta y validación profesional en Cloud Computing, Inteligencia Artificial,
+                Data Engineering y bases de datos NoSQL / Grafos.
               </p>
+
+              {/* Category Filter Tabs */}
+              <div className="flex flex-wrap gap-2 mb-4 pt-1">
+                {categories.map((cat) => {
+                  const isSelected = selectedCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => setSelectedCategory(cat)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
+                        isSelected
+                          ? "bg-violet-600 text-white shadow-md shadow-violet-900/30 border border-violet-400/40"
+                          : "bg-white/[0.04] text-neutral-300 hover:text-white hover:bg-white/[0.08] border border-white/5"
+                      }`}
+                    >
+                      <span>{cat}</span>
+                      <span
+                        className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                          isSelected
+                            ? "bg-white/20 text-white"
+                            : "bg-white/5 text-neutral-400"
+                        }`}
+                      >
+                        {getCategoryCount(cat)}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Certifications List Badges with Modern Verified Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
-              {certificationsDetailed.map((cert) => {
-                const isNeo4j = cert.id === "neo4j-pro";
-                return (
-                  <div
+            {/* Certifications Interactive Grid with Scroll Container */}
+            <div className="max-h-[500px] overflow-y-auto pr-1 space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {filteredCertifications.map((cert) => (
+                  <a
                     key={cert.id}
-                    className={`p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-violet-500/40 hover:bg-white/[0.06] transition-all duration-200 group/cert flex flex-col justify-between ${
-                      isNeo4j ? "md:col-span-2 bg-gradient-to-r from-violet-950/20 via-[#111122] to-indigo-950/20 border-violet-500/20" : ""
-                    }`}
+                    href={cert.credentialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-violet-500/50 hover:bg-white/[0.05] transition-all duration-200 group flex flex-col justify-between"
                   >
-                    <div className="flex items-start gap-3">
-                      <div className="p-2 rounded-lg bg-violet-600/20 text-violet-300 border border-violet-500/30 shrink-0 group-hover/cert:bg-violet-600/30 group-hover/cert:scale-105 transition-all">
-                        <BadgeCheck size={18} className="text-violet-400" />
+                    <div>
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <div className="flex items-center gap-2">
+                          <div className="p-1.5 rounded-lg bg-violet-600/20 text-violet-300 border border-violet-500/30 group-hover:bg-violet-600/30 group-hover:scale-105 transition-all">
+                            <BadgeCheck size={16} className="text-violet-400" />
+                          </div>
+                          <span className="text-xs font-medium text-neutral-400">
+                            {cert.issuer}
+                          </span>
+                        </div>
+                        <span className="text-[11px] font-mono text-neutral-500">
+                          {cert.date}
+                        </span>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-sm font-semibold text-white group-hover/cert:text-violet-200 transition-colors leading-snug">
-                          {cert.name}
-                        </h4>
-                        <p className="text-xs text-neutral-400 mt-0.5">
-                          {cert.issuer} • {cert.year}
-                        </p>
-                      </div>
-                    </div>
 
-                    <div className="mt-2.5 pt-2 border-t border-white/5 flex items-center justify-between text-[11px]">
-                      <span className="font-mono px-2 py-0.5 rounded bg-violet-500/10 text-violet-300 border border-violet-500/20">
-                        {cert.badgeLabel}
-                      </span>
-                      {cert.credentialId ? (
-                        <span className="inline-flex items-center gap-1.5 text-emerald-400 font-mono text-[11px] font-medium bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                      <h4 className="text-sm font-semibold text-white group-hover:text-violet-200 transition-colors leading-snug">
+                        {cert.title}
+                      </h4>
+
+                      {cert.credentialId && (
+                        <div className="mt-2 inline-flex items-center gap-1.5 text-emerald-400 font-mono text-[10px] bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
                           <span className="relative flex h-1.5 w-1.5">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
                           </span>
-                          {cert.credentialId}
-                        </span>
-                      ) : (
-                        <span className="text-neutral-400 font-mono text-[11px] flex items-center gap-1">
-                          <CheckCircle2 size={12} className="text-emerald-400" /> Credencial Oficial
-                        </span>
+                          <span className="truncate max-w-[200px]">ID: {cert.credentialId}</span>
+                        </div>
                       )}
                     </div>
-                  </div>
-                );
-              })}
+
+                    <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-xs">
+                      <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-violet-500/10 text-violet-300 border border-violet-500/20">
+                        {cert.badgeText}
+                      </span>
+                      <span className="text-neutral-400 group-hover:text-violet-300 flex items-center gap-1 font-medium transition-colors text-[11px]">
+                        Ver credencial en LinkedIn
+                        <ExternalLink size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
