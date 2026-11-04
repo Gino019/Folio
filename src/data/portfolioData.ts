@@ -32,12 +32,66 @@ export const personalData = {
   principles: ["SOLID", "POO", "Clean Code", "Arquitectura Modular", "Scrum", "SecOps"],
   certifications: [
     "AWS Academy Cloud Web Application Builder",
-    "Oracle Cloud Infrastructure 2025 Foundations",
-    "Oracle Cloud AI Foundations Associate",
-    "Neo4j Certified Professional",
+    "Oracle Cloud Infrastructure 2025 Foundations Associate",
+    "Oracle Cloud Infrastructure 2025 AI Foundations Associate",
+    "Neo4j Certified Professional (ID: Credencial Verificada)",
     "MongoDB Data Modeling Path"
   ]
 };
+
+export interface CertificationItem {
+  id: string;
+  name: string;
+  issuer: string;
+  year: string;
+  credentialId?: string;
+  badgeLabel: string;
+  category: "cloud" | "ai" | "database";
+}
+
+export const certificationsDetailed: CertificationItem[] = [
+  {
+    id: "aws-builder",
+    name: "AWS Academy Cloud Web Application Builder",
+    issuer: "Amazon Web Services (AWS)",
+    year: "2025",
+    badgeLabel: "AWS Cloud",
+    category: "cloud",
+  },
+  {
+    id: "oci-foundations",
+    name: "Oracle Cloud Infrastructure 2025 Foundations Associate",
+    issuer: "Oracle University",
+    year: "2025",
+    badgeLabel: "OCI Architecture",
+    category: "cloud",
+  },
+  {
+    id: "oci-ai",
+    name: "Oracle Cloud Infrastructure 2025 AI Foundations Associate",
+    issuer: "Oracle University",
+    year: "2025",
+    badgeLabel: "OCI AI & GenAI",
+    category: "ai",
+  },
+  {
+    id: "neo4j-pro",
+    name: "Neo4j Certified Professional",
+    issuer: "Neo4j GraphAcademy",
+    year: "2024",
+    credentialId: "ID: Credencial Verificada",
+    badgeLabel: "Graph Database",
+    category: "database",
+  },
+  {
+    id: "mongodb-modeling",
+    name: "MongoDB Data Modeling Path",
+    issuer: "MongoDB University",
+    year: "2024",
+    badgeLabel: "NoSQL Modeling",
+    category: "database",
+  },
+];
 
 export const projectsData: Project[] = [
   {

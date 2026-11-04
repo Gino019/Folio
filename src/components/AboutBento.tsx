@@ -10,9 +10,10 @@ import {
   Layers,
   Sparkles,
   Cpu,
+  BadgeCheck,
   CheckCircle2,
 } from "lucide-react";
-import { personalData } from "@/data/portfolioData";
+import { personalData, certificationsDetailed } from "@/data/portfolioData";
 
 export default function AboutBento() {
   const [copied, setCopied] = useState(false);
@@ -282,19 +283,52 @@ export default function AboutBento() {
               </p>
             </div>
 
-            {/* Certifications List Badges */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-              {personalData.certifications.map((cert, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-violet-500/30 hover:bg-white/[0.06] transition-colors"
-                >
-                  <CheckCircle2 size={16} className="text-violet-400 shrink-0" />
-                  <span className="text-xs sm:text-sm font-medium text-neutral-200">
-                    {cert}
-                  </span>
-                </div>
-              ))}
+            {/* Certifications List Badges with Modern Verified Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+              {certificationsDetailed.map((cert) => {
+                const isNeo4j = cert.id === "neo4j-pro";
+                return (
+                  <div
+                    key={cert.id}
+                    className={`p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-violet-500/40 hover:bg-white/[0.06] transition-all duration-200 group/cert flex flex-col justify-between ${
+                      isNeo4j ? "md:col-span-2 bg-gradient-to-r from-violet-950/20 via-[#111122] to-indigo-950/20 border-violet-500/20" : ""
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="p-2 rounded-lg bg-violet-600/20 text-violet-300 border border-violet-500/30 shrink-0 group-hover/cert:bg-violet-600/30 group-hover/cert:scale-105 transition-all">
+                        <BadgeCheck size={18} className="text-violet-400" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-sm font-semibold text-white group-hover/cert:text-violet-200 transition-colors leading-snug">
+                          {cert.name}
+                        </h4>
+                        <p className="text-xs text-neutral-400 mt-0.5">
+                          {cert.issuer} • {cert.year}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-2.5 pt-2 border-t border-white/5 flex items-center justify-between text-[11px]">
+                      <span className="font-mono px-2 py-0.5 rounded bg-violet-500/10 text-violet-300 border border-violet-500/20">
+                        {cert.badgeLabel}
+                      </span>
+                      {cert.credentialId ? (
+                        <span className="inline-flex items-center gap-1.5 text-emerald-400 font-mono text-[11px] font-medium bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                          <span className="relative flex h-1.5 w-1.5">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+                          </span>
+                          {cert.credentialId}
+                        </span>
+                      ) : (
+                        <span className="text-neutral-400 font-mono text-[11px] flex items-center gap-1">
+                          <CheckCircle2 size={12} className="text-emerald-400" /> Credencial Oficial
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
