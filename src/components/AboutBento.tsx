@@ -51,11 +51,6 @@ export default function AboutBento() {
     }
   };
 
-  const getCategoryCount = (cat: string) => {
-    if (cat === "Todas") return certificationsData.length;
-    return certificationsData.filter((c) => c.category === cat).length;
-  };
-
   const filteredCertifications =
     selectedCategory === "Todas"
       ? certificationsData
@@ -286,9 +281,9 @@ export default function AboutBento() {
           </div>
 
           {/* ========================================================
-              CARD 4: Rediseño Premium - "¿Quieres mi correo?" (Bottom-Left)
+              CARD 4: Rediseño Limpio - "¿Quieres mi correo?" (Bottom-Left)
              ======================================================== */}
-          <div className="bg-gradient-to-b from-violet-600/90 via-indigo-900/95 to-[#0b0b1a] border border-violet-400/30 relative overflow-hidden rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-2xl group transition-all duration-300">
+          <div className="bg-gradient-to-b from-violet-600/90 via-indigo-900/95 to-[#0b0b1a] border border-violet-400/30 relative overflow-hidden rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl group transition-all duration-300">
             {/* Subtle CSS Grid Pattern Texture */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
@@ -300,12 +295,12 @@ export default function AboutBento() {
             <div className="absolute right-3 top-1/2 -translate-y-1/2 text-white/[0.04] font-mono text-7xl font-bold select-none pointer-events-none">
               &#123;&nbsp;&#125;
             </div>
-            <div className="absolute left-4 bottom-24 text-white/[0.03] font-mono text-5xl font-bold select-none pointer-events-none">
+            <div className="absolute left-4 bottom-16 text-white/[0.03] font-mono text-5xl font-bold select-none pointer-events-none">
               &lt;&nbsp;/&gt;
             </div>
 
             {/* Top: Mini Editor / Terminal */}
-            <div className="relative z-10 backdrop-blur-md bg-black/40 border border-white/15 rounded-xl p-3.5 font-mono text-xs shadow-lg mb-5">
+            <div className="relative z-10 backdrop-blur-md bg-black/40 border border-white/15 rounded-xl p-3.5 font-mono text-xs shadow-lg mb-6">
               <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2.5">
                 <div className="flex items-center gap-1.5">
                   <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
@@ -324,7 +319,7 @@ export default function AboutBento() {
                 <div>
                   <span className="text-purple-300">const</span>{" "}
                   <span className="text-blue-300">status</span> ={" "}
-                  <span className="text-amber-300">&quot;Open to Work 🚀&quot;</span>;
+                  <span className="text-amber-300">&quot;Open to Work&quot;</span>;
                 </div>
                 <div>
                   <span className="text-rose-300">await</span>{" "}
@@ -334,8 +329,8 @@ export default function AboutBento() {
               </div>
             </div>
 
-            {/* Center: Call to Action */}
-            <div className="relative z-10 flex flex-col items-center text-center my-auto py-1">
+            {/* Center: Call to Action Limpio */}
+            <div className="relative z-10 flex flex-col items-center text-center my-auto py-2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-medium mb-3 shadow-sm">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -347,7 +342,7 @@ export default function AboutBento() {
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2 tracking-tight">
                 ¿Quieres mi correo?
               </h3>
-              <p className="text-purple-100/90 text-xs sm:text-sm mb-5 max-w-xs leading-relaxed">
+              <p className="text-purple-100/90 text-xs sm:text-sm mb-6 max-w-xs leading-relaxed">
                 Disponible para colaborar, conversar sobre proyectos o propuestas profesionales.
               </p>
 
@@ -369,55 +364,19 @@ export default function AboutBento() {
                 )}
               </button>
             </div>
-
-            {/* Bottom: Summary of Backing Metrics */}
-            <div className="relative z-10 mt-6 pt-4 border-t border-white/10 grid grid-cols-3 gap-2 text-center">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-2.5 border border-white/10 flex flex-col justify-center">
-                <span className="text-base sm:text-lg font-black text-white leading-none">18</span>
-                <span className="text-[10px] text-purple-200/90 font-medium mt-1 leading-tight">Certificaciones</span>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-2.5 border border-white/10 flex flex-col justify-center">
-                <span className="text-base sm:text-lg font-black text-white leading-none">6</span>
-                <span className="text-[10px] text-purple-200/90 font-medium mt-1 leading-tight">Entidades</span>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-2.5 border border-white/10 flex flex-col justify-center">
-                <span className="text-xs sm:text-sm font-bold text-emerald-400 leading-none">GMT-5</span>
-                <span className="text-[10px] text-purple-200/90 font-medium mt-1 leading-tight">Tacna (Remoto)</span>
-              </div>
-            </div>
           </div>
 
           {/* ========================================================
-              CARD 5: Investigación & Certificaciones (Bottom-Right: 2 cols)
+              CARD 5: Certificaciones (Bottom-Right: 2 cols)
              ======================================================== */}
           <div className="lg:col-span-2 bg-[#111122] border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden relative group hover:border-violet-500/30 transition-all duration-300 shadow-xl">
             {/* Header info */}
             <div>
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                <div className="flex items-center gap-2 text-violet-400">
-                  <Award size={22} />
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    Investigación & Certificaciones ({certificationsData.length})
-                  </h3>
-                </div>
-                {/* Floating Tech Badges */}
-                <div className="flex items-center gap-1.5 font-mono text-xs text-neutral-300">
-                  <span className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">
-                    TS
-                  </span>
-                  <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                    Python
-                  </span>
-                  <span className="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">
-                    Java
-                  </span>
-                  <span className="px-2 py-0.5 rounded bg-orange-500/20 text-orange-300 border border-orange-500/30">
-                    AWS
-                  </span>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                    DB
-                  </span>
-                </div>
+              <div className="flex items-center gap-2 text-violet-400 mb-3">
+                <Award size={22} />
+                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                  Certificaciones
+                </h3>
               </div>
 
               <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-4">
@@ -425,58 +384,24 @@ export default function AboutBento() {
                 Data Engineering y bases de datos NoSQL / Grafos.
               </p>
 
-              {/* Category Filter Tabs */}
-              <div className="flex flex-wrap gap-2 mb-3 pt-1">
+              {/* Category Filter Tabs (Clean, without numbers) */}
+              <div className="flex flex-wrap gap-2 mb-4 pt-1">
                 {categories.map((cat) => {
                   const isSelected = selectedCategory === cat;
                   return (
                     <button
                       key={cat}
                       onClick={() => setSelectedCategory(cat)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                         isSelected
                           ? "bg-violet-600 text-white shadow-md shadow-violet-900/30 border border-violet-400/40"
                           : "bg-white/[0.04] text-neutral-300 hover:text-white hover:bg-white/[0.08] border border-white/5"
                       }`}
                     >
-                      <span>{cat}</span>
-                      <span
-                        className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
-                          isSelected
-                            ? "bg-white/20 text-white"
-                            : "bg-white/5 text-neutral-400"
-                        }`}
-                      >
-                        {getCategoryCount(cat)}
-                      </span>
+                      {cat}
                     </button>
                   );
                 })}
-              </div>
-
-              {/* Row of Certifying Entities */}
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-4 pb-2 border-b border-white/5">
-                <span className="text-[11px] font-mono text-neutral-400 flex items-center mr-1">
-                  Entidades:
-                </span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-mono font-medium">
-                  <Cloud size={11} /> AWS
-                </span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-red-500/10 border border-red-500/30 text-red-400 text-[11px] font-mono font-medium">
-                  <Cpu size={11} /> Oracle
-                </span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-mono font-medium">
-                  <Code2 size={11} /> DataCamp
-                </span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-green-500/10 border border-green-500/30 text-green-400 text-[11px] font-mono font-medium">
-                  <Database size={11} /> MongoDB
-                </span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[11px] font-mono font-medium">
-                  <Share2 size={11} /> Neo4j
-                </span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-purple-500/10 border border-purple-500/30 text-purple-300 text-[11px] font-mono font-medium">
-                  <Server size={11} /> Datadog
-                </span>
               </div>
             </div>
 
@@ -519,16 +444,6 @@ export default function AboutBento() {
                         <h4 className="text-sm font-semibold text-white group-hover:text-violet-200 transition-colors leading-snug">
                           {cert.title}
                         </h4>
-
-                        {cert.credentialId && (
-                          <div className="mt-2 inline-flex items-center gap-1.5 text-emerald-400 font-mono text-[10px] bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
-                            <span className="relative flex h-1.5 w-1.5">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-                            </span>
-                            <span className="truncate max-w-[200px]">ID: {cert.credentialId}</span>
-                          </div>
-                        )}
                       </div>
 
                       <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-xs">
