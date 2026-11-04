@@ -12,6 +12,11 @@ import {
   Cpu,
   BadgeCheck,
   ExternalLink,
+  Cloud,
+  Code2,
+  Database,
+  Share2,
+  Server,
 } from "lucide-react";
 import { personalData, certificationsData } from "@/data/portfolioData";
 
@@ -55,6 +60,57 @@ export default function AboutBento() {
     selectedCategory === "Todas"
       ? certificationsData
       : certificationsData.filter((c) => c.category === selectedCategory);
+
+  // Helper visual para asignar identidad, siglas y colores oficiales por entidad
+  const getIssuerBadge = (issuer: string) => {
+    if (issuer.includes("Amazon") || issuer.includes("AWS")) {
+      return {
+        label: "AWS",
+        icon: Cloud,
+        containerClass: "bg-amber-500/15 border-amber-500/40 text-amber-400",
+      };
+    }
+    if (issuer.includes("DataCamp")) {
+      return {
+        label: "DC",
+        icon: Code2,
+        containerClass: "bg-emerald-500/15 border-emerald-500/40 text-emerald-400",
+      };
+    }
+    if (issuer.includes("Oracle")) {
+      return {
+        label: "OCI",
+        icon: Cpu,
+        containerClass: "bg-red-500/15 border-red-500/40 text-red-400",
+      };
+    }
+    if (issuer.includes("MongoDB")) {
+      return {
+        label: "MDB",
+        icon: Database,
+        containerClass: "bg-green-500/15 border-green-500/40 text-green-400",
+      };
+    }
+    if (issuer.includes("Neo4j")) {
+      return {
+        label: "N4J",
+        icon: Share2,
+        containerClass: "bg-cyan-500/15 border-cyan-500/40 text-cyan-400",
+      };
+    }
+    if (issuer.includes("Datadog")) {
+      return {
+        label: "DD",
+        icon: Server,
+        containerClass: "bg-purple-500/15 border-purple-500/40 text-purple-300",
+      };
+    }
+    return {
+      label: "CERT",
+      icon: BadgeCheck,
+      containerClass: "bg-violet-500/15 border-violet-500/40 text-violet-400",
+    };
+  };
 
   // Principles with customized rotations and positions for Card 2
   const principleTags = [
@@ -230,36 +286,105 @@ export default function AboutBento() {
           </div>
 
           {/* ========================================================
-              CARD 4: Purple Card - Copiar Correo (Bottom-Left)
+              CARD 4: Rediseño Premium - "¿Quieres mi correo?" (Bottom-Left)
              ======================================================== */}
-          <div className="bg-gradient-to-br from-violet-600 to-purple-700 border border-purple-400/30 rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center text-center relative overflow-hidden group shadow-xl hover:shadow-purple-700/30 transition-all duration-300">
-            {/* Background sparkle effect */}
-            <div className="absolute -top-12 -right-12 w-36 h-36 bg-white/10 rounded-full blur-xl pointer-events-none" />
+          <div className="bg-gradient-to-b from-violet-600/90 via-indigo-900/95 to-[#0b0b1a] border border-violet-400/30 relative overflow-hidden rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-2xl group transition-all duration-300">
+            {/* Subtle CSS Grid Pattern Texture */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
-              ¿Quieres mi correo?
-            </h3>
-            <p className="text-purple-100 text-sm mb-6 max-w-xs">
-              Disponible para colaborar, conversar sobre proyectos o propuestas profesionales.
-            </p>
+            {/* Ambient Radial Glows */}
+            <div className="absolute -top-16 -right-16 w-52 h-52 bg-violet-400/25 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-16 -left-16 w-52 h-52 bg-indigo-500/25 rounded-full blur-3xl pointer-events-none" />
 
-            <button
-              onClick={handleCopyEmail}
-              className="bg-black hover:bg-neutral-900 text-white font-medium px-6 py-3 rounded-full flex items-center gap-2.5 shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer border border-white/10"
-              aria-label="Copiar correo electrónico de Eduardo Gino"
-            >
-              {copied ? (
-                <>
-                  <Check size={18} className="text-emerald-400" />
-                  <span className="text-emerald-300 font-semibold">¡Correo copiado!</span>
-                </>
-              ) : (
-                <>
-                  <Copy size={18} className="text-neutral-300" />
-                  <span>{personalData.email}</span>
-                </>
-              )}
-            </button>
+            {/* Floating Watermark Code Symbols */}
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-white/[0.04] font-mono text-7xl font-bold select-none pointer-events-none">
+              &#123;&nbsp;&#125;
+            </div>
+            <div className="absolute left-4 bottom-24 text-white/[0.03] font-mono text-5xl font-bold select-none pointer-events-none">
+              &lt;&nbsp;/&gt;
+            </div>
+
+            {/* Top: Mini Editor / Terminal */}
+            <div className="relative z-10 backdrop-blur-md bg-black/40 border border-white/15 rounded-xl p-3.5 font-mono text-xs shadow-lg mb-5">
+              <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2.5">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                  <span className="ml-2 text-[11px] text-neutral-400 font-sans">contact.ts</span>
+                </div>
+                <span className="text-[10px] text-emerald-400 font-mono">ready</span>
+              </div>
+              <div className="space-y-1 text-left leading-relaxed">
+                <div>
+                  <span className="text-purple-300">const</span>{" "}
+                  <span className="text-blue-300">dev</span> ={" "}
+                  <span className="text-emerald-300">&quot;Eduardo Flores&quot;</span>;
+                </div>
+                <div>
+                  <span className="text-purple-300">const</span>{" "}
+                  <span className="text-blue-300">status</span> ={" "}
+                  <span className="text-amber-300">&quot;Open to Work 🚀&quot;</span>;
+                </div>
+                <div>
+                  <span className="text-rose-300">await</span>{" "}
+                  <span className="text-indigo-300">sendMail</span>(
+                  <span className="text-emerald-300">&quot;{personalData.email}&quot;</span>);
+                </div>
+              </div>
+            </div>
+
+            {/* Center: Call to Action */}
+            <div className="relative z-10 flex flex-col items-center text-center my-auto py-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-medium mb-3 shadow-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <span>Disponible para prácticas y proyectos</span>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2 tracking-tight">
+                ¿Quieres mi correo?
+              </h3>
+              <p className="text-purple-100/90 text-xs sm:text-sm mb-5 max-w-xs leading-relaxed">
+                Disponible para colaborar, conversar sobre proyectos o propuestas profesionales.
+              </p>
+
+              <button
+                onClick={handleCopyEmail}
+                className="bg-black hover:bg-neutral-900 text-white font-medium px-6 py-3 rounded-full flex items-center gap-2.5 shadow-xl shadow-black/50 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer border border-white/15 w-full justify-center group/btn"
+                aria-label="Copiar correo electrónico"
+              >
+                {copied ? (
+                  <>
+                    <Check size={18} className="text-emerald-400" />
+                    <span className="text-emerald-300 font-semibold text-sm">¡Correo copiado!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy size={16} className="text-neutral-300 group-hover/btn:text-white transition-colors" />
+                    <span className="font-mono text-xs sm:text-sm truncate">{personalData.email}</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Bottom: Summary of Backing Metrics */}
+            <div className="relative z-10 mt-6 pt-4 border-t border-white/10 grid grid-cols-3 gap-2 text-center">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-2.5 border border-white/10 flex flex-col justify-center">
+                <span className="text-base sm:text-lg font-black text-white leading-none">18</span>
+                <span className="text-[10px] text-purple-200/90 font-medium mt-1 leading-tight">Certificaciones</span>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-2.5 border border-white/10 flex flex-col justify-center">
+                <span className="text-base sm:text-lg font-black text-white leading-none">6</span>
+                <span className="text-[10px] text-purple-200/90 font-medium mt-1 leading-tight">Entidades</span>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-2.5 border border-white/10 flex flex-col justify-center">
+                <span className="text-xs sm:text-sm font-bold text-emerald-400 leading-none">GMT-5</span>
+                <span className="text-[10px] text-purple-200/90 font-medium mt-1 leading-tight">Tacna (Remoto)</span>
+              </div>
+            </div>
           </div>
 
           {/* ========================================================
@@ -301,7 +426,7 @@ export default function AboutBento() {
               </p>
 
               {/* Category Filter Tabs */}
-              <div className="flex flex-wrap gap-2 mb-4 pt-1">
+              <div className="flex flex-wrap gap-2 mb-3 pt-1">
                 {categories.map((cat) => {
                   const isSelected = selectedCategory === cat;
                   return (
@@ -328,60 +453,96 @@ export default function AboutBento() {
                   );
                 })}
               </div>
+
+              {/* Row of Certifying Entities */}
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-4 pb-2 border-b border-white/5">
+                <span className="text-[11px] font-mono text-neutral-400 flex items-center mr-1">
+                  Entidades:
+                </span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-mono font-medium">
+                  <Cloud size={11} /> AWS
+                </span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-red-500/10 border border-red-500/30 text-red-400 text-[11px] font-mono font-medium">
+                  <Cpu size={11} /> Oracle
+                </span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-mono font-medium">
+                  <Code2 size={11} /> DataCamp
+                </span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-green-500/10 border border-green-500/30 text-green-400 text-[11px] font-mono font-medium">
+                  <Database size={11} /> MongoDB
+                </span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[11px] font-mono font-medium">
+                  <Share2 size={11} /> Neo4j
+                </span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-purple-500/10 border border-purple-500/30 text-purple-300 text-[11px] font-mono font-medium">
+                  <Server size={11} /> Datadog
+                </span>
+              </div>
             </div>
 
-            {/* Certifications Interactive Grid with Scroll Container */}
-            <div className="max-h-[500px] overflow-y-auto pr-1 space-y-3">
+            {/* Certifications Interactive Grid with Thin & Dark Scroll Container */}
+            <div className="max-h-[460px] overflow-y-auto pr-1.5 space-y-3 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-white/5 [&::-webkit-scrollbar-thumb]:bg-violet-500/40 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-violet-500/70">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {filteredCertifications.map((cert) => (
-                  <a
-                    key={cert.id}
-                    href={cert.credentialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-violet-500/50 hover:bg-white/[0.05] transition-all duration-200 group flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-start justify-between gap-2 mb-2">
-                        <div className="flex items-center gap-2">
-                          <div className="p-1.5 rounded-lg bg-violet-600/20 text-violet-300 border border-violet-500/30 group-hover:bg-violet-600/30 group-hover:scale-105 transition-all">
-                            <BadgeCheck size={16} className="text-violet-400" />
+                {filteredCertifications.map((cert) => {
+                  const issuerInfo = getIssuerBadge(cert.issuer);
+                  const IssuerIcon = issuerInfo.icon;
+
+                  return (
+                    <a
+                      key={cert.id}
+                      href={cert.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-violet-500/50 hover:bg-white/[0.05] transition-all duration-200 group flex flex-col justify-between"
+                    >
+                      <div>
+                        <div className="flex items-start justify-between gap-3 mb-2.5">
+                          <div className="flex items-center gap-2.5">
+                            {/* Insignia Cuadrada Diferenciada por Entidad */}
+                            <div
+                              className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xs border shrink-0 group-hover:scale-105 transition-all ${issuerInfo.containerClass}`}
+                            >
+                              <div className="flex flex-col items-center justify-center leading-none">
+                                <IssuerIcon size={14} className="mb-0.5" />
+                                <span className="text-[9px] font-mono font-extrabold">{issuerInfo.label}</span>
+                              </div>
+                            </div>
+                            <span className="text-xs font-medium text-neutral-300">
+                              {cert.issuer}
+                            </span>
                           </div>
-                          <span className="text-xs font-medium text-neutral-400">
-                            {cert.issuer}
+                          <span className="text-[11px] font-mono text-neutral-500 shrink-0">
+                            {cert.date}
                           </span>
                         </div>
-                        <span className="text-[11px] font-mono text-neutral-500">
-                          {cert.date}
-                        </span>
+
+                        <h4 className="text-sm font-semibold text-white group-hover:text-violet-200 transition-colors leading-snug">
+                          {cert.title}
+                        </h4>
+
+                        {cert.credentialId && (
+                          <div className="mt-2 inline-flex items-center gap-1.5 text-emerald-400 font-mono text-[10px] bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                            <span className="relative flex h-1.5 w-1.5">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+                            </span>
+                            <span className="truncate max-w-[200px]">ID: {cert.credentialId}</span>
+                          </div>
+                        )}
                       </div>
 
-                      <h4 className="text-sm font-semibold text-white group-hover:text-violet-200 transition-colors leading-snug">
-                        {cert.title}
-                      </h4>
-
-                      {cert.credentialId && (
-                        <div className="mt-2 inline-flex items-center gap-1.5 text-emerald-400 font-mono text-[10px] bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
-                          <span className="relative flex h-1.5 w-1.5">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-                          </span>
-                          <span className="truncate max-w-[200px]">ID: {cert.credentialId}</span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-xs">
-                      <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-violet-500/10 text-violet-300 border border-violet-500/20">
-                        {cert.badgeText}
-                      </span>
-                      <span className="text-neutral-400 group-hover:text-violet-300 flex items-center gap-1 font-medium transition-colors text-[11px]">
-                        Ver credencial en LinkedIn
-                        <ExternalLink size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </span>
-                    </div>
-                  </a>
-                ))}
+                      <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-xs">
+                        <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-violet-500/10 text-violet-300 border border-violet-500/20">
+                          {cert.badgeText}
+                        </span>
+                        <span className="text-neutral-400 group-hover:text-violet-300 flex items-center gap-1 font-medium transition-colors text-[11px]">
+                          Ver credencial en LinkedIn
+                          <ExternalLink size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </span>
+                      </div>
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
