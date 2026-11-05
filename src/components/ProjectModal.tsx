@@ -10,6 +10,7 @@ import {
   Layers,
   Sparkles,
   Info,
+  Download,
 } from "lucide-react";
 import { GithubIcon } from "./SocialIcons";
 import { Project } from "@/data/portfolioData";
@@ -194,7 +195,18 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             ID: <span className="text-white">{project.id}</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            {project.downloadUrl && (
+              <a
+                href={project.downloadUrl}
+                download
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/30 transition hover:scale-105"
+              >
+                <Download size={16} />
+                <span>{project.downloadLabel || "Descargar Sistema"}</span>
+              </a>
+            )}
+
             <a
               href={project.githubUrl}
               target="_blank"

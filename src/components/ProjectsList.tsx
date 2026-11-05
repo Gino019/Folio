@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowRight, FolderGit2 } from "lucide-react";
+import { ArrowRight, FolderGit2, Download } from "lucide-react";
 import { projectsData, Project } from "@/data/portfolioData";
 import ProjectModal from "./ProjectModal";
 import ProjectImageRenderer from "./ProjectImageRenderer";
@@ -69,9 +69,21 @@ export default function ProjectsList() {
                 </div>
               </div>
 
-              {/* Right Side: "Ver más →" button alineado verticalmente al centro */}
-              <div className="flex items-center justify-start md:justify-end shrink-0">
-                <span className="inline-flex items-center gap-1.5 text-neutral-400 group-hover:text-white font-medium text-base transition-all duration-200 group-hover:translate-x-2">
+              {/* Right Side: Download button (if available) + "Ver más →" button */}
+              <div className="flex items-center gap-3 shrink-0">
+                {project.downloadUrl && (
+                  <a
+                    href={project.downloadUrl}
+                    download
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-violet-600/20 hover:bg-violet-600 text-violet-300 hover:text-white border border-violet-500/30 transition-all shadow-sm group/dl"
+                  >
+                    <Download size={15} className="group-hover/dl:translate-y-0.5 transition-transform" />
+                    <span>{project.downloadLabel || "Descargar Sistema"}</span>
+                  </a>
+                )}
+
+                <span className="inline-flex items-center gap-1.5 text-neutral-400 group-hover:text-white font-medium text-base transition-all duration-200 group-hover:translate-x-1.5">
                   <span>Ver más</span>
                   <ArrowRight size={18} className="text-violet-400 group-hover:text-violet-300" />
                 </span>
