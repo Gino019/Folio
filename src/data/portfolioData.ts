@@ -228,7 +228,7 @@ export const projectsData: Project[] = [
       "Seguridad con permisos validados en capa de servicios por rol (Administrador y Recepcionista), hash de contraseñas con sal, auditoría de anulaciones y respaldos de SQLite."
     ],
     technologies: ["java-17", "java-swing", "sqlite", "jdbc", "maven", "solid"],
-    githubUrl: "https://github.com/Gino019",
+    githubUrl: "https://github.com/Gino019/GymDesk.git",
     downloadUrl: "/downloads/GymDeskDemo.zip",
     downloadLabel: "Descargar Sistema",
     images: [

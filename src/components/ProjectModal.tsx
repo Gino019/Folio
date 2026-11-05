@@ -9,7 +9,6 @@ import {
   CheckCircle2,
   Layers,
   Sparkles,
-  Info,
   Download,
 } from "lucide-react";
 import { GithubIcon } from "./SocialIcons";
@@ -132,14 +131,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             )}
           </div>
 
-          {/* Image Caption Box */}
-          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-start gap-2.5 text-xs sm:text-sm text-neutral-300">
-            <Info size={18} className="text-violet-400 shrink-0 mt-0.5" />
-            <div>
-              <span className="font-semibold text-white">Captura del Sistema ({currentImageIndex + 1} de {images.length}): </span>
-              <span>{currentImage.caption}</span>
-            </div>
-          </div>
 
           {/* Full Description */}
           <div>
