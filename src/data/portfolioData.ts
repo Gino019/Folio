@@ -10,9 +10,11 @@ export interface Project {
   shortDescription: string;
   fullDescription: string;
   achievements: string[];
+  useCases?: string[];
   technologies: string[];
   githubUrl: string;
   liveUrl?: string;
+  liveLabel?: string;
   downloadUrl?: string;
   downloadLabel?: string;
   images: ProjectImage[];
@@ -253,5 +255,49 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/Gino019/Proyecto-Final-Basede-Datos2",
     liveUrl: "https://enmask-frontend.vercel.app/login",
     images: []
+  },
+  {
+    id: "ecotacna",
+    title: "EcoTacna",
+    category: "Plataforma Web SaaS • Gestión Ambiental & IA",
+    shortDescription: "Plataforma web que soluciona la gestión informal del aceite de cocina usado en restaurantes y pollerías de Tacna, conectando generadores con empresas recolectoras mediante Inteligencia Artificial para recomendar las mejores rutas y propuestas de recojo, geolocalización en Google Maps y constancias de trazabilidad ambiental.",
+    fullDescription: "En Tacna, el aceite de cocina usado generado por el sector gastronómico suele entregarse sin registro centralizado ni respaldo ambiental. EcoTacna digitaliza este ecosistema conectando 3 perfiles (Restaurante Generador, Empresa Recolectora y Administrador). El sistema incorpora Inteligencia Artificial para analizar y clasificar el ranking de las mejores solicitudes de recojo según volumen, disponibilidad y ubicación, integrando validación de RUC con ApiPeruDev, mapas interactivos con Google Maps, control de incidencias, suscripciones mensuales y generación de constancias digitales de trazabilidad.",
+    achievements: [
+      "Motor de recomendación con Inteligencia Artificial que evalúa y prioriza las solicitudes pendientes ('Mejor opción calculada', Ranking #1, #2, #3) para optimizar los recojos.",
+      "Geolocalización operativa integrada con Google Maps para ubicar los puntos exactos de recolección registrados por los restaurantes.",
+      "Validación empresarial de RUC mediante ApiPeruDev, flujo de verificación comercial y pasarela de suscripciones mensuales (Plan Restaurante y Plan Recolector).",
+      "Trazabilidad completa de principio a fin: control de litros confirmados, reporte de incidencias, exportación a Excel y emisión de constancias digitales ambientales."
+    ],
+    useCases: [
+      "Restaurantes, Pollerías y Cafeterías: Programar el recojo de aceite usado, evitar el desecho informal y obtener constancias digitales de responsabilidad ambiental.",
+      "Empresas Recolectoras y Recicladoras: Visualizar en tiempo real los recojos disponibles priorizados por IA y planificar rutas eficientes en el mapa operativo.",
+      "Control y Trazabilidad Ambiental: Auditar volúmenes recolectados, historial de operaciones e incidencias con respaldo documental exportable."
+    ],
+    technologies: ["react", "java", "spring-boot", "postgresql", "ia", "google-maps", "apiperudev"],
+    githubUrl: "https://github.com/Gino019/ECOTACNA_U3",
+    liveUrl: "https://ecotacna-u3-1.onrender.com/",
+    liveLabel: "Probar en Vivo",
+    images: [
+      {
+        url: "/projects/recojos-disponibles.jpg",
+        caption: "Panel de recojos disponibles con priorización inteligente mediante IA ('Mejor opción calculada' y ranking de solicitudes)"
+      },
+      {
+        url: "/projects/google_maps.jpg",
+        caption: "Mapa operativo integrado con Google Maps mostrando la ubicación exacta del restaurante generador en Tacna"
+      },
+      {
+        url: "/projects/Historal-recojos.jpg",
+        caption: "Historial de recojos con exportación a Excel, detalle de operación, control de pagos y gestión de incidencias"
+      },
+      {
+        url: "/projects/revision-empresa.png",
+        caption: "Flujo de registro y verificación empresarial con validación de RUC y razón social"
+      },
+      {
+        url: "/projects/transaccion-aprobada.png",
+        caption: "Activación de suscripción mensual y confirmación de pago en la plataforma"
+      }
+    ]
   }
 ];

@@ -10,6 +10,7 @@ import {
   Layers,
   Sparkles,
   Download,
+  Target,
 } from "lucide-react";
 import { GithubIcon } from "./SocialIcons";
 import { Project } from "@/data/portfolioData";
@@ -110,26 +111,35 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <button
                     onClick={handlePrevImage}
                     aria-label="Imagen anterior"
-                    className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md transition shadow-lg cursor-pointer"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md transition shadow-lg cursor-pointer z-20"
                   >
                     <ChevronLeft size={20} />
                   </button>
                   <button
                     onClick={handleNextImage}
                     aria-label="Imagen siguiente"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md transition shadow-lg cursor-pointer"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md transition shadow-lg cursor-pointer z-20"
                   >
                     <ChevronRight size={20} />
                   </button>
                 </>
               )}
 
-              {/* Pagination indicator */}
-              {images.length > 1 && (
-                <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-black/70 text-xs text-white border border-white/15 font-mono backdrop-blur-sm">
-                  {currentImageIndex + 1} / {images.length}
-                </div>
-              )}
+              {/* Bottom bar with caption & pagination */}
+              <div className="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-black/90 via-black/60 to-transparent flex items-end justify-between gap-3 text-xs z-10 pointer-events-none">
+                {currentImage.caption ? (
+                  <p className="text-white text-xs sm:text-sm font-medium line-clamp-2 drop-shadow-md">
+                    {currentImage.caption}
+                  </p>
+                ) : (
+                  <div />
+                )}
+                {images.length > 1 && (
+                  <span className="shrink-0 px-2.5 py-0.5 rounded-full bg-black/75 text-neutral-300 border border-white/15 font-mono text-xs backdrop-blur-sm">
+                    {currentImageIndex + 1} / {images.length}
+                  </span>
+                )}
+              </div>
             </div>
           ) : project.liveUrl ? (
             <div className="p-6 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-violet-950/30 to-indigo-950/40 border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
@@ -153,7 +163,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/40 hover:scale-105 active:scale-95 transition-all shrink-0"
               >
-                <span>Abrir Aplicación en Vivo</span>
+                <span>{project.liveLabel || "Probar en Vivo"}</span>
                 <ExternalLink size={16} />
               </a>
             </div>
@@ -188,6 +198,27 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               ))}
             </div>
           </div>
+
+          {/* Casos de Uso & Aplicación Real */}
+          {project.useCases && project.useCases.length > 0 && (
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-400 mb-3 flex items-center gap-2">
+                <Target size={16} className="text-violet-400" />
+                Casos de Uso & Aplicación Real
+              </h4>
+              <div className="space-y-2">
+                {project.useCases.map((useCase, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/5"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0 mt-2" />
+                    <span className="text-sm text-neutral-200 leading-relaxed">{useCase}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Technologies */}
           <div>
@@ -232,7 +263,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/30 transition hover:scale-105"
               >
-                <span>Abrir Aplicación en Vivo</span>
+                <span>{project.liveLabel || "Probar en Vivo"}</span>
                 <ExternalLink size={14} />
               </a>
             )}

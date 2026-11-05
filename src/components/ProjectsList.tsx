@@ -97,7 +97,7 @@ export default function ProjectsList() {
                     onClick={(e) => e.stopPropagation()}
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/40 transition-all shadow-sm group/live"
                   >
-                    <span>Ver Demo en Vivo</span>
+                    <span>{project.liveLabel || "Probar en Vivo"}</span>
                     <ExternalLink size={14} className="group-hover/live:translate-x-0.5 group-hover/live:-translate-y-0.5 transition-transform" />
                   </a>
                 )}
