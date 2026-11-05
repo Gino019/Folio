@@ -7,7 +7,6 @@ export interface Project {
   id: string;
   title: string;
   category: string;
-  status: 'Funcionando en Localhost' | 'En Desarrollo' | 'Producción';
   shortDescription: string;
   fullDescription: string;
   achievements: string[];
@@ -219,8 +218,7 @@ export const projectsData: Project[] = [
     id: "ecotacna",
     title: "ECOTACNA",
     category: "Proyecto Universitario • Web & Pagos",
-    status: "Funcionando en Localhost",
-    shortDescription: "Sistema modular con integración de pasarela de pagos Culqi para automatizar y asegurar transacciones.",
+    shortDescription: "Plataforma web modular que automatiza y asegura el cobro de transacciones electrónicas mediante la integración de la pasarela de pagos Culqi.",
     fullDescription: "Plataforma diseñada e implementada con arquitectura modular tipada en TypeScript y backend en Java, integrando la pasarela de pagos Culqi para procesar transacciones seguras bajo principios de Programación Orientada a Objetos.",
     achievements: [
       "Diseño e implementación de la lógica de negocio y estructura modular con TypeScript.",
@@ -230,16 +228,15 @@ export const projectsData: Project[] = [
     technologies: ["typescript", "java", "culqi-api", "poo"],
     githubUrl: "https://github.com/Gino019/ECOTACNA",
     images: [
-      { url: "/projects/ecotacna-1.png", caption: "Vista principal del sistema ECOTACNA ejecutándose en servidor local" },
-      { url: "/projects/ecotacna-2.png", caption: "Flujo de integración y pasarela de pagos con Culqi funcionando" }
+      { url: "/projects/ecotacna-1.png", caption: "Vista principal del sistema ECOTACNA y módulo de comercio electrónico" },
+      { url: "/projects/ecotacna-2.png", caption: "Flujo de integración y pasarela de pagos con Culqi" }
     ]
   },
   {
     id: "scopus-enmask",
     title: "Proyecto Scopus (Motor Enmask)",
     category: "Proyecto Académico • SecOps & DBA Tools",
-    status: "Funcionando en Localhost",
-    shortDescription: "Plataforma SecOps/DBA que fusiona un motor de enmascaramiento dinámico de datos con monitoreo de infraestructura.",
+    shortDescription: "Plataforma SecOps y DBA que protege datos sensibles mediante enmascaramiento dinámico en tiempo real mientras monitorea el rendimiento de la infraestructura.",
     fullDescription: "Herramienta especializada de seguridad y administración de bases de datos desarrollada en Python bajo principios SOLID, capaz de enmascarar datos en tiempo real mientras supervisa el rendimiento del servidor.",
     achievements: [
       "Fusión de motor de enmascaramiento dinámico con monitor de rendimiento e infraestructura.",
@@ -248,7 +245,7 @@ export const projectsData: Project[] = [
     technologies: ["python", "secops", "dba-tools", "solid"],
     githubUrl: "https://github.com/Gino019/unificate-MotorEnmask",
     images: [
-      { url: "/projects/scopus-1.png", caption: "Dashboard del monitor de rendimiento e infraestructura en ejecución" },
+      { url: "/projects/scopus-1.png", caption: "Dashboard del monitor de rendimiento e infraestructura del servidor" },
       { url: "/projects/scopus-2.png", caption: "Motor de enmascaramiento dinámico procesando consultas en tiempo real" }
     ]
   },
@@ -256,8 +253,7 @@ export const projectsData: Project[] = [
     id: "enmask-db",
     title: "Enmask",
     category: "Proyecto Universitario • Seguridad de Datos",
-    status: "Funcionando en Localhost",
-    shortDescription: "Sistema completo de enmascaramiento estático para proteger datos sensibles en bases de datos SQL y NoSQL.",
+    shortDescription: "Sistema de seguridad de datos que anonimiza información confidencial mediante enmascaramiento estático en bases de datos SQL y NoSQL.",
     fullDescription: "Solución multiplataforma en Python y TypeScript diseñada para anonimizar y proteger información confidencial tanto en motores relacionales como no relacionales antes de pasar a entornos de pruebas.",
     achievements: [
       "Implementación de algoritmos de enmascaramiento estático para bases de datos relacionales y no relacionales.",
@@ -267,15 +263,14 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/Gino019/Proyecto-Final-Basede-Datos2",
     images: [
       { url: "/projects/enmask-1.png", caption: "Configuración de conexión y selección de tablas/colecciones a enmascarar" },
-      { url: "/projects/enmask-2.png", caption: "Resultado de datos sensibles anonimizados correctamente en local" }
+      { url: "/projects/enmask-2.png", caption: "Resultado de datos confidenciales anonimizados correctamente" }
     ]
   },
   {
     id: "gakom-flashcourier",
     title: "Gakom FlashCourier",
     category: "Proyecto Personal • Gestión Logística",
-    status: "Funcionando en Localhost",
-    shortDescription: "Aplicación de escritorio enfocada en la gestión logística, registro y seguimiento de paquetes.",
+    shortDescription: "Aplicación de gestión logística que optimiza el registro, control operativo y seguimiento de envíos de paquetes de extremo a extremo.",
     fullDescription: "Sistema de escritorio construido íntegramente en Java para optimizar el flujo operativo de envíos, control de estados de paquetes y trazabilidad logística.",
     achievements: [
       "Optimización del flujo de registro y seguimiento de envíos.",
@@ -285,7 +280,7 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/Gino019/Gakom-FlashCourier",
     images: [
       { url: "/projects/gakom-1.png", caption: "Interfaz principal de registro y gestión de envíos en Gakom FlashCourier" },
-      { url: "/projects/gakom-2.png", caption: "Panel de seguimiento de estado de paquetes funcionando en local" }
+      { url: "/projects/gakom-2.png", caption: "Panel de seguimiento de estado y trazabilidad de paquetes" }
     ]
   }
 ];

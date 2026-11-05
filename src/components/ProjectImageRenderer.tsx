@@ -36,18 +36,12 @@ export default function ProjectImageRenderer({
             <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
             <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-            <span className="ml-2 font-mono text-[11px] text-neutral-400 truncate max-w-[140px] sm:max-w-xs">
-              http://localhost:3000/{projectTitle.toLowerCase().replace(/\s+/g, "-")}
+            <span className="ml-2 font-mono text-[11px] text-neutral-400 truncate max-w-[200px] sm:max-w-xs">
+              https://{projectTitle.toLowerCase().replace(/\s+/g, "-")}.app
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono font-medium">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-            </span>
-            <span>Localhost: Activo</span>
-          </div>
+          <span className="text-[10px] font-mono text-neutral-500">v1.0.0</span>
         </div>
 
         {/* Mock Application / Dashboard Canvas */}
@@ -94,9 +88,9 @@ export default function ProjectImageRenderer({
         {/* Footer status bar */}
         <div className="bg-[#090914] px-3 py-1.5 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-neutral-500">
           <span className="flex items-center gap-1 text-violet-400/80">
-            <Activity size={11} /> 200 OK • Node / Java Server
+            <Activity size={11} /> Sistema Operativo • 200 OK
           </span>
-          <span className="text-neutral-400 font-semibold">127.0.0.1</span>
+          <span className="text-neutral-400 font-semibold">online</span>
         </div>
       </div>
     );
