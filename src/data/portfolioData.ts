@@ -299,5 +299,27 @@ export const projectsData: Project[] = [
         caption: "Activación de suscripción mensual y confirmación de pago en la plataforma"
       }
     ]
+  },
+  {
+    id: "electrostock",
+    title: "ElectroStock",
+    category: "Plataforma Web Full-Stack • Inventario de Hardware & Electrónica",
+    shortDescription: "Plataforma web de control de inventario, trazabilidad de piezas y gestión de almacén para laboratorios de electrónica y talleres de hardware, que gestiona componentes por número de parte (MPN), huellas de PCB (SMD y Through-Hole), ubicación en gaveteros, alertas de stock crítico y listas de materiales (BOM).",
+    fullDescription: "A diferencia de un inventario comercial tradicional, ElectroStock modela la complejidad técnica de la ingeniería electrónica. Además de sus módulos operativos (Dashboard de alertas, catálogo reactivo con ajuste rápido de existencias, mapa de gavetas y cálculo de BOM), el proyecto destaca por un proceso real de modernización e ingeniería inversa: se rescató y actualizó una base heredada de 2017 hacia una arquitectura moderna con Java 17 LTS, Spring Boot, React 19 con Vite, conexión cifrada a MongoDB Atlas y despliegue unificado mediante Docker Multi-Stage en Render.",
+    achievements: [
+      "Modelado especializado para hardware: clasificación por MPN, encapsulados SMD (0805, 0603, SOIC-8, LQFP) y Through-Hole (DIP, TO-220), ubicación en gaveteros y listas de materiales (BOM).",
+      "Modernización e ingeniería de software: migración a Java 17 LTS resolviendo encapsulamiento de módulos JVM, actualización de driver MongoDB para soporte DNS Seedlist (mongodb+srv://) y corrección de filtros CORS y enrutamiento SPA.",
+      "Arquitectura Full-Stack contenerizada con Docker Multi-Stage, integrando API RESTful en Spring Boot (HATEOAS/HAL + Spring Security BCrypt), frontend en React 19 + Vite y cluster en la nube con MongoDB Atlas."
+    ],
+    useCases: [
+      "Laboratorios de Electrónica y Talleres de Prototipado: Localizar al instante resistencias, sensores y microcontroladores organizados por gavetas y cajoneras físicas.",
+      "Ensamblaje de PCB y Proyectos IoT: Validar mediante listas de materiales (BOM) si las existencias actuales alcanzan para fabricar un lote o prototipo antes de iniciar el montaje.",
+      "Prevención de Rotura de Stock: Monitorear umbrales críticos (minStockLevel) con alertas visuales automáticas para reabastecer componentes a tiempo."
+    ],
+    technologies: ["java-17", "spring-boot", "react", "mongodb-atlas", "docker", "vite"],
+    githubUrl: "https://github.com/Gino019/sistema-inventario-hardware",
+    liveUrl: "https://sistema-inventario-hardware.onrender.com",
+    liveLabel: "Probar en Vivo",
+    images: []
   }
 ];
