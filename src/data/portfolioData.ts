@@ -241,13 +241,14 @@ export const projectsData: Project[] = [
     id: "enmask",
     title: "Enmask",
     category: "Aplicación Web • Seguridad de Bases de Datos",
-    shortDescription: "Sistema web de seguridad de datos que protege información sensible mediante el enmascaramiento para bases de datos relacionales y no relacionales.",
-    fullDescription: "Plataforma web desarrollada en Python y TypeScript diseñada para proteger y anonimizar datos confidenciales en bases de datos SQL y NoSQL, garantizando que la información sensible permanezca segura en entornos de desarrollo, pruebas y análisis.",
+    shortDescription: "Plataforma web de seguridad de datos que protege información sensible en bases de datos relacionales y no relacionales mediante técnicas de enmascaramiento estático, ofuscación parcial, sustitución sintética, hashing y barajado. Ideal para entornos de pruebas (QA), analítica de datos, auditorías externas y cumplimiento de privacidad.",
+    fullDescription: "Sistema completo de enmascaramiento de datos desarrollado en Python y TypeScript para bases de datos SQL y NoSQL. Permite anonimizar información confidencial (PII, datos financieros, credenciales y registros clínicos) aplicando múltiples técnicas de enmascaramiento sin romper la integridad referencial ni el formato de las tablas o colecciones.",
     achievements: [
-      "Implementación de un sistema completo de enmascaramiento para proteger cualquier dato sensible en bases de datos relacionales y no relacionales.",
-      "Arquitectura web desacoplada integrando procesamiento en Python con una interfaz moderna en TypeScript desplegada en la nube.",
-      "Acceso en vivo con autenticación para gestionar y ejecutar procesos de protección de datos directamente desde el navegador."
+      "Enmascaramiento Estático en motores relacionales (SQL) y no relacionales (NoSQL) para generar copias seguras de bases de datos.",
+      "Técnicas de Ofuscación Parcial (ocultación con máscara en DNI, tarjetas y correos), Sustitución con datos sintéticos realistas, Hashing irreversible y Barajado (Shuffling) estadístico.",
+      "Arquitectura web en Python y TypeScript desplegada en producción con acceso interactivo para configurar reglas por columna o documento."
     ],
+    
     technologies: ["python", "typescript", "sql", "nosql"],
     githubUrl: "https://github.com/Gino019/Proyecto-Final-Basede-Datos2",
     liveUrl: "https://enmask-frontend.vercel.app/login",
