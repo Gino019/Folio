@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowRight, FolderGit2, Download } from "lucide-react";
+import { ArrowRight, FolderGit2, Download, ExternalLink } from "lucide-react";
 import { projectsData, Project } from "@/data/portfolioData";
 import ProjectModal from "./ProjectModal";
 import ProjectImageRenderer from "./ProjectImageRenderer";
@@ -45,7 +45,13 @@ export default function ProjectsList() {
             <div
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              onMouseEnter={() => setHoveredProject(project)}
+              onMouseEnter={() => {
+                if (project.images && project.images.length > 0) {
+                  setHoveredProject(project);
+                } else {
+                  setHoveredProject(null);
+                }
+              }}
               onMouseLeave={() => setHoveredProject(null)}
               className="border-b border-white/10 py-8 group relative flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer transition-colors duration-200 hover:bg-white/[0.02] px-4 -mx-4 rounded-xl"
             >
@@ -69,8 +75,8 @@ export default function ProjectsList() {
                 </div>
               </div>
 
-              {/* Right Side: Download button (if available) + "Ver más →" button */}
-              <div className="flex items-center gap-3 shrink-0">
+              {/* Right Side: Download button, Live Demo button + "Ver más →" button */}
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
                 {project.downloadUrl && (
                   <a
                     href={project.downloadUrl}
@@ -80,6 +86,19 @@ export default function ProjectsList() {
                   >
                     <Download size={15} className="group-hover/dl:translate-y-0.5 transition-transform" />
                     <span>{project.downloadLabel || "Descargar Sistema"}</span>
+                  </a>
+                )}
+
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/40 transition-all shadow-sm group/live"
+                  >
+                    <span>Ver Demo en Vivo</span>
+                    <ExternalLink size={14} className="group-hover/live:translate-x-0.5 group-hover/live:-translate-y-0.5 transition-transform" />
                   </a>
                 )}
 
@@ -93,8 +112,8 @@ export default function ProjectsList() {
         </div>
       </div>
 
-      {/* Floating Preview Card on Hover (Desktop only) */}
-      {hoveredProject && (
+      {/* Floating Preview Card on Hover (Desktop only, solo si tiene imágenes) */}
+      {hoveredProject && hoveredProject.images && hoveredProject.images.length > 0 && (
         <div
           className="hidden lg:block fixed pointer-events-none z-30 transition-transform duration-75 ease-out"
           style={{

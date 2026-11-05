@@ -38,7 +38,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   const images = project.images || [];
   const currentImage = images[currentImageIndex] || {
-    url: "/placeholder.png",
+    url: "",
     caption: project.shortDescription,
   };
 
@@ -92,45 +92,72 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </p>
           </div>
 
-          {/* Visual Carousel / Mockup Viewer */}
-          <div className="relative rounded-xl border border-white/15 bg-black/40 overflow-hidden shadow-xl aspect-video w-full flex items-center justify-center">
-            <ProjectImageRenderer
-              src={currentImage.url}
-              alt={`${project.title} - ${currentImage.caption}`}
-              caption={currentImage.caption}
-              projectTitle={project.title}
-              technologies={project.technologies}
-              className="w-full h-full"
-            />
+          {/* Visual Carousel (si tiene imágenes) o Banner de Aplicación en Vivo (si no tiene imágenes) */}
+          {images.length > 0 ? (
+            <div className="relative rounded-xl border border-white/15 bg-black/40 overflow-hidden shadow-xl aspect-video w-full flex items-center justify-center">
+              <ProjectImageRenderer
+                src={currentImage.url}
+                alt={`${project.title} - ${currentImage.caption}`}
+                caption={currentImage.caption}
+                projectTitle={project.title}
+                technologies={project.technologies}
+                className="w-full h-full"
+              />
 
-            {/* Navigation Arrows (if multiple images) */}
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={handlePrevImage}
-                  aria-label="Imagen anterior"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md transition shadow-lg cursor-pointer"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <button
-                  onClick={handleNextImage}
-                  aria-label="Imagen siguiente"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md transition shadow-lg cursor-pointer"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </>
-            )}
+              {/* Navigation Arrows (if multiple images) */}
+              {images.length > 1 && (
+                <>
+                  <button
+                    onClick={handlePrevImage}
+                    aria-label="Imagen anterior"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md transition shadow-lg cursor-pointer"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button
+                    onClick={handleNextImage}
+                    aria-label="Imagen siguiente"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md transition shadow-lg cursor-pointer"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </>
+              )}
 
-            {/* Pagination indicator */}
-            {images.length > 1 && (
-              <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-black/70 text-xs text-white border border-white/15 font-mono backdrop-blur-sm">
-                {currentImageIndex + 1} / {images.length}
+              {/* Pagination indicator */}
+              {images.length > 1 && (
+                <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-black/70 text-xs text-white border border-white/15 font-mono backdrop-blur-sm">
+                  {currentImageIndex + 1} / {images.length}
+                </div>
+              )}
+            </div>
+          ) : project.liveUrl ? (
+            <div className="p-6 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-violet-950/30 to-indigo-950/40 border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
+              <div className="text-center sm:text-left">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 mb-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  <span>Desplegado en Producción</span>
+                </div>
+                <h4 className="text-lg font-bold text-white">Aplicación disponible en la nube</h4>
+                <p className="text-xs sm:text-sm text-neutral-300 mt-0.5">
+                  Accede y prueba la solución en vivo con autenticación y panel de control.
+                </p>
               </div>
-            )}
-          </div>
 
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/40 hover:scale-105 active:scale-95 transition-all shrink-0"
+              >
+                <span>Abrir Aplicación en Vivo</span>
+                <ExternalLink size={16} />
+              </a>
+            </div>
+          ) : null}
 
           {/* Full Description */}
           <div>
@@ -191,10 +218,22 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <a
                 href={project.downloadUrl}
                 download
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/30 transition hover:scale-105"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-violet-600/30 hover:bg-violet-600 text-violet-200 hover:text-white border border-violet-500/40 shadow-lg shadow-purple-900/30 transition hover:scale-105"
               >
                 <Download size={16} />
                 <span>{project.downloadLabel || "Descargar Sistema"}</span>
+              </a>
+            )}
+
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/30 transition hover:scale-105"
+              >
+                <span>Abrir Aplicación en Vivo</span>
+                <ExternalLink size={14} />
               </a>
             )}
 
@@ -202,24 +241,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-violet-600 hover:bg-violet-700 text-white shadow-lg shadow-purple-900/30 transition hover:scale-105"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/10 transition hover:scale-105"
             >
               <GithubIcon size={16} />
               <span>Ver Código en GitHub</span>
               <ExternalLink size={14} className="opacity-70" />
             </a>
-
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold bg-white/10 hover:bg-white/20 text-white transition"
-              >
-                <span>Demo en Vivo</span>
-                <ExternalLink size={14} />
-              </a>
-            )}
           </div>
         </div>
       </div>
